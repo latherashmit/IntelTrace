@@ -1,0 +1,11 @@
+event_id,type,date,time,location,suspects_involved,status
+E001,Bomb Threat,2023-08-23,14:35,Delhi,"['S007', 'S006', 'S001']",Closed
+E002,Smuggling,2023-08-15,09:20,Kabul,"['S009']",Ongoing
+E003,Cyber Attack,2023-07-10,01:45,Delhi,"['S001', 'S009', 'S004']",Investigating
+E004,Cyber Attack,2023-06-19,17:30,Lahore,"['S005', 'S006', 'S001']",Ongoing
+E005,Smuggling,2023-07-02,11:10,Lahore,"['S004', 'S010']",Closed
+E006,Armed Robbery,2023-10-02,22:55,Dhaka,"['S003']",Investigating
+E007,Smuggling,2023-10-12,06:40,Kabul,"['S001', 'S002']",Closed
+E008,Bomb Threat,2023-11-13,15:25,Delhi,"['S007', 'S006']",Investigating
+E009,Bomb Threat,2023-10-17,04:05,Mumbai,"['S009', 'S002']",Ongoing
+E010,Smuggling,2023-12-23,19:00,Lahore,"['S001', 'S006', 'S005']",Investigating
