@@ -1,20 +1,18 @@
 from flask import jsonify, request
 from load_data import load_data
 from datetime import datetime  
-from auth_routes import auth_bp, token_required  # COPILOT MODIFICATIOB
+# from auth_routes import auth_bp, token_required  # 🔒 Auth imports removed for demo
 
 # Load preprocessed data
 suspects, events, transactions = load_data()
 
 def setup_routes(app):
-    app.register_blueprint(auth_bp)  # COPILOT MODIFICATION
+    # app.register_blueprint(auth_bp)  # 🔒 Auth blueprint registration removed
 
-    # GET /api/suspects
     @app.route("/api/suspects")
     def get_suspects():
         return jsonify(suspects.to_dict(orient="records"))
 
-    # GET /api/search?name=xyz
     @app.route("/api/search")
     def search_suspects():
         query = request.args.get("name", "").lower()
@@ -39,23 +37,19 @@ def setup_routes(app):
 
         return jsonify(results)
 
-    # GET /api/events
     @app.route("/api/events")
     def get_events():
         return jsonify(events.to_dict(orient="records"))
 
-    # GET /api/transactions
     @app.route("/api/transactions")
     def get_transactions():
         return jsonify(transactions.to_dict(orient="records"))
 
-    # GET /api/graph
     @app.route("/api/graph")
     def get_graph():
         nodes = []
         edges = []
 
-        # Suspect nodes
         for _, row in suspects.iterrows():
             nodes.append({
                 "id": row["suspect_id"],
@@ -70,7 +64,6 @@ def setup_routes(app):
                     "label": "associate"
                 })
 
-        # Event nodes
         for _, row in events.iterrows():
             nodes.append({
                 "id": row["event_id"],
@@ -84,7 +77,6 @@ def setup_routes(app):
                     "label": "involved"
                 })
 
-        # Transaction edges
         for _, row in transactions.iterrows():
             edges.append({
                 "from": row["from_id"],
@@ -94,7 +86,6 @@ def setup_routes(app):
             })
 
         return jsonify({"nodes": nodes, "edges": edges})
-
 
     @app.route("/api/alerts")
     def get_alerts():
@@ -107,8 +98,8 @@ def setup_routes(app):
 
             try:
                 dt = datetime.strptime(f"{row['date']} {row['time']}", "%Y-%m-%d %H:%M")
-            except Exception as e:
-                continue  # skip any rows with invalid date/time
+            except Exception:
+                continue
 
             alert_data.append({
                 "title": row["type"],
@@ -119,9 +110,9 @@ def setup_routes(app):
 
         return jsonify(sorted(alert_data, key=lambda x: x["time"], reverse=True))
 
-#COPILOT MODIFICATION
-    @app.route("/api/protected")
-    @token_required
-    def protected(current_user):
-        return jsonify({'message': f'Hello, {current_user}. This is a protected route.'})
+    # 🔒 Auth-protected route commented out
+    # @app.route("/api/protected")
+    # @token_required
+    # def protected(current_user):
+    #     return jsonify({'message': f'Hello, {current_user}. This is a protected route.'})
 
