@@ -8,7 +8,7 @@ function App() {
   const [graphData, setGraphData] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeTab, setActiveTab] = useState("graph"); // Default to graph
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('jwt'));     //COPILOT MODIFICATION
 
   useEffect(() => {
