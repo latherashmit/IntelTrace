@@ -1,0 +1,23 @@
+/* Center the SVG in the container */
+svg {
+  display: block;
+  margin: 0 auto; /* Horizontally center the SVG */
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+
+/* Optional: ensure body/container doesn’t cut off overflow */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+/* If you wrap your SVG in a container, use this */
+.graph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  /* Optional: full screen vertical centering */
+  overflow: auto; /* Prevent graph from being cut off */
+}
